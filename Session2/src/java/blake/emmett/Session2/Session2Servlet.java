@@ -51,13 +51,9 @@ public class Session2Servlet extends HttpServlet {
     
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPut(req, resp); //To change body of generated methods, choose Tools | Templates.
     
-        String url = "/display.jsp";
-        
-            // forward request and response objects to specified URL
         getServletContext()
-            .getRequestDispatcher(url)
+            .getRequestDispatcher("/display.jsp")
             .forward(req, resp);
         
     }
