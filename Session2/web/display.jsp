@@ -13,7 +13,15 @@
     </head>
     <body>
         <h1>Display</h1>
-            <label>ID:</label>
-    <span>${resp.id}</span><br>
+            <label>Last Name:</label>
+            <span>${user.lastName}</span><br> 
+            <br>
+            
+            <label>First Name:</label>
+            <span>${user.firstName}</span><br> 
+            <br>
+            <label>Email:</label>
+            <span>${user.emailAddress}</span><br> 
+            <br>
     </body>
 </html>
