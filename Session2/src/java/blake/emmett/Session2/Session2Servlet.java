@@ -8,6 +8,7 @@ package blake.emmett.Session2;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -51,11 +52,31 @@ public class Session2Servlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         
         userBean user = new userBean();
+        Cookie[] cookies = req.getCookies();
+        String cName;
+        String cValue;
+        
+        if (cookies != null){
+            for (Cookie cookie: cookies){
+                log(cookie.getName() + ": " + cookie.getValue());
+            }
+        }
         
         user.setFirstName(req.getParameter("firstName"));
         user.setLastName(req.getParameter("lastName"));
         user.setEmailAddress(req.getParameter("emailAddress"));
         req.setAttribute("user", user);
+        
+        
+        Cookie Fname_cookie = new Cookie("Fname", user.getFirstName().toString());
+        Cookie Lname_cookie = new Cookie("Lname", user.getLastName().toString());
+        Cookie email_cookie = new Cookie("emailAddress", user.getEmailAddress().toString());
+        
+        resp.addCookie(email_cookie);
+        resp.addCookie(Lname_cookie);
+        resp.addCookie(Fname_cookie);
+                
+                
         getServletContext()
             .getRequestDispatcher("/display.jsp")
             .forward(req, resp);
