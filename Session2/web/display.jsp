@@ -4,6 +4,7 @@
     Author     : Emmett
 --%>
 
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -23,5 +24,8 @@
             <label>Email:</label>
             <span>${user.emailAddress}</span><br> 
             <br>
+            
+
+            
     </body>
 </html>
