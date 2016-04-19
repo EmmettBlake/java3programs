@@ -8,11 +8,14 @@ package com.javaee.conferencewizard.db;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import static javax.persistence.TemporalType.DATE;
 
 /**
  *
@@ -24,12 +27,14 @@ public class Conference {
     @GeneratedValue(strategy =GenerationType.AUTO)
     private Long confId;
     private String confName;
+    @Temporal(DATE)
     private Date startDate;
+    @Temporal(DATE)
     private Date endDate;
     private Double cost;
-    @ManyToMany
+    @ManyToMany(fetch=FetchType.LAZY)
     private List<Person> attendees;
-    @OneToMany
+    @OneToMany(mappedBy="conference")
     private List<Room> rooms;
 
 

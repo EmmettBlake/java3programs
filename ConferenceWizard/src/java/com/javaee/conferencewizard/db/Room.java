@@ -28,7 +28,7 @@ public class Room implements Serializable {
     private Conference conference;
     private String roomName;
     private int capacity;
-    @OneToMany
+    @OneToMany(mappedBy="room")
     private List<Presentation> presentations;
 
     public Room(Long roomId, Long confId, String roomName, int capacity, List<Presentation> presentations) {

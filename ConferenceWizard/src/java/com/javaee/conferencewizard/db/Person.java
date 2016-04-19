@@ -8,10 +8,13 @@ package com.javaee.conferencewizard.db;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -27,9 +30,9 @@ public class Person implements Serializable {
     private String phone;
     private String email;
     private String title;
-    @ManyToMany
+    @ManyToMany(mappedBy="attendees")
     private List<Conference> conferences;
-    @ManyToMany
+    @ManyToMany(mappedBy="authors")
     private List<ConfPaper> papers;
     @ManyToMany
     private List<Presentation> presentations;
@@ -47,6 +50,73 @@ public class Person implements Serializable {
     public Person() {
     }
 
+    public Person add(){
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        try  {
+            trans.begin();
+            em.persist(this);
+            trans.commit();
+            return this;
+        } catch (Exception ex){
+            System.out.println(ex.getMessage());
+            trans.rollback();
+        } finally {
+            em.close();
+        }
+        return null;
+    }
+    
+    public void change(){
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        try  {
+            trans.begin();
+            em.merge(this);
+            trans.commit();
+        } catch (Exception ex){
+            System.out.println(ex.getMessage());
+            trans.rollback();
+        } finally {
+            em.close();
+        }
+    }
+    
+    public void delete(){
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        try  {
+            trans.begin();
+            em.remove(this);
+            trans.commit();
+        } catch (Exception ex){
+            System.out.println(ex.getMessage());
+            trans.rollback();
+        } finally {
+            em.close();
+        }     
+    }
+    
+    public static Person read(String email){
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        String readQuery = "Select p From Person p" +
+                "Where p.email = :email";
+        TypedQuery<Person> p = em.createQuery(readQuery, Person.class);
+        
+        try  {
+            p.setParameter("email", email);
+            return p.getSingleResult();
+            
+        } catch (Exception ex){
+            System.out.println(ex.getMessage());
+            trans.rollback();
+        } finally {
+            em.close();
+        }
+        return null;
+    }
+    
     public String getPersonId() {
         return personId;
     }

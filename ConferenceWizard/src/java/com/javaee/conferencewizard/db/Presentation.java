@@ -15,6 +15,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import static javax.persistence.TemporalType.TIMESTAMP;
 
 /**
  *
@@ -25,11 +28,13 @@ public class Presentation implements Serializable {
    @Id
    @GeneratedValue(strategy=GenerationType.AUTO)
    private Long presentationId;
+   @Temporal(TemporalType.TIMESTAMP)
    private Date startTime;
+   @Temporal(TemporalType.TIMESTAMP)
    private Date endTime;
    @OneToOne
    private ConfPaper paper;
-   @ManyToMany
+   @ManyToMany(mappedBy="presentations")
    private List<Person> presenters;
    private String title;
    @ManyToOne
