@@ -18,8 +18,8 @@
         <input type="text" name="personId" value="${person.personId}" ><br>
         <label class="pad_top">First Name:</label>
         <input type="text" name="firstName" value="${person.firstName}"
-        <label class="pad_top">Last Name:</label>
-        <input type="text" name="lastName" value="${person.lastName}"
+        <label class="pad_top">Last Name:</label><br>
+        <input type="text" name="lastName" value="${person.lastName}"<br>
         <label class="pad_top">Title:</label>
         <input type="text" name="title" value="${person.title}"<br>
         <label class="pad_top">Phone:</label>
@@ -28,7 +28,7 @@
         <input type="text" name="email" value ="${person.email}"><br>   
         <input type="radio" name="function" value="R"> Read &nbsp;
         <input type="radio" name="function" value="A"> Add &nbsp;
-        <input type="radio" name="function" value="U"> Change &nbsp;
+        <input type="radio" name="function" value="C"> Change &nbsp;
         <input type="radio" name="function" value="D"> Delete &nbsp; <br>
 
         <label>&nbsp;</label>

@@ -12,6 +12,26 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Conference Wizard</h1>
+        
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h1> <b>Maintenance</b></h1>
+        <a href="PersonMaint.jsp">Person</a>&nbsp; 
+        <a href="ConfMaint.jsp">Conference</a>&nbsp;
+        <a href="PaperMaint.jsp">Paper</a>&nbsp;
+        <a href="PresentationMaint.jsp">Presentation</a>&nbsp;
+        <a href="RoomMaint.jsp">Room</a>
+        
+        
     </body>
 </html>

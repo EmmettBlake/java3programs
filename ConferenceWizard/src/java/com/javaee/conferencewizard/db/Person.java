@@ -100,8 +100,8 @@ public class Person implements Serializable {
     public static Person read(String email){
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
-        String readQuery = "Select p From Person p" +
-                "Where p.email = :email";
+        String readQuery = "Select p From Person p " +
+                           " Where p.email = :email";
         TypedQuery<Person> p = em.createQuery(readQuery, Person.class);
         
         try  {

@@ -73,16 +73,33 @@ public class PersonServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        String function = request.getParameter("function");
         Person person = new Person();
         person.setEmail(request.getParameter("email"));
-        person.setFirstName(request.getParameter("fistName"));
+        person.setFirstName(request.getParameter("firstName"));
         person.setLastName(request.getParameter("lastName"));
         person.setPhone(request.getParameter("phone"));
         person.setTitle(request.getParameter("title"));
-        person.add();
         
-        processRequest(request, response);
+        
+        switch(function.toUpperCase()){
+            case "A":
+                person.add();
+                break;
+            case "C":
+                person.change();
+                break;
+            case "D":
+                person.delete();
+                break;
+            case "R":
+                person = Person.read(person.getEmail());
+                break;
+            
+        }
+        request.setAttribute("person", person);
+        //processRequest(request, response);
+        getServletContext().getRequestDispatcher("/PersonMaint.jsp").forward(request, response);
     }
 
     /**
