@@ -87,12 +87,15 @@ public class PersonServlet extends HttpServlet {
                 person.add();
                 break;
             case "C":
+                person.setPersonId(request.getParameter("personId"));
                 person.change();
                 break;
             case "D":
+                person.setPersonId(request.getParameter("personId"));
                 person.delete();
                 break;
             case "R":
+                person.setPersonId(request.getParameter("personId"));
                 person = Person.read(person.getEmail());
                 break;
             
