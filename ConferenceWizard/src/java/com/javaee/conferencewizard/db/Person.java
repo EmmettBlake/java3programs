@@ -87,7 +87,8 @@ public class Person implements Serializable {
         EntityTransaction trans = em.getTransaction();
         try  {
             trans.begin();
-            em.remove(this);
+            Person p = em.find(this.getClass(), this.getPersonId());
+            em.remove(p);
             trans.commit();
         } catch (Exception ex){
             System.out.println(ex.getMessage());
