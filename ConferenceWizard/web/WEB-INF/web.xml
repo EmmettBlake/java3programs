@@ -5,17 +5,16 @@
         <servlet-class>com.javaee.conferencewizard.db.PersonServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>AttendeeServlet</servlet-name>
-        <servlet-class>com.javaee.conferencewizard.db.AttendeeServlet</servlet-class>
+        <servlet-name>ConferenceServlet</servlet-name>
+        <servlet-class>com.javaee.conferencewizard.db.ConferenceServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>PersonServlet</servlet-name>
         <url-pattern>/PersonServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>AttendeeServlet</servlet-name>
-        <url-pattern>/AttendeeServlet</url-pattern>
-        <url-pattern>/AttendeeServlet/*</url-pattern>
+        <servlet-name>ConferenceServlet</servlet-name>
+        <url-pattern>/ConferenceServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

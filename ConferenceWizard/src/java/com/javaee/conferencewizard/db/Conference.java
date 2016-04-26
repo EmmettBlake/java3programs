@@ -8,6 +8,8 @@ package com.javaee.conferencewizard.db;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,6 +18,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import static javax.persistence.TemporalType.DATE;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -49,6 +52,74 @@ public class Conference {
     }
 
     public Conference() {
+    }
+
+    public Conference add() {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        try  {
+            trans.begin();
+            em.persist(this);
+            trans.commit();
+            return this;
+        } catch (Exception ex){
+            System.out.println(ex.getMessage());
+            trans.rollback();
+        } finally {
+            em.close();
+        }
+        
+        return null;
+    }
+    
+        public void change(){
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        try  {
+            trans.begin();
+            em.merge(this);
+            trans.commit();
+        } catch (Exception ex){
+            System.out.println(ex.getMessage());
+            trans.rollback();
+        } finally {
+            em.close();
+        }
+    }
+        public void delete(){
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        try  {
+            trans.begin();
+            Conference c = em.find(this.getClass(), this.getConfId());
+            em.remove(c);
+            trans.commit();
+        } catch (Exception ex){
+            System.out.println(ex.getMessage());
+            trans.rollback();
+        } finally {
+            em.close();
+        }     
+    }
+    
+    public static Conference read(String confName){
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        String readQuery = "Select c From Conference c " +
+                           " Where c.confName = :confName";
+        TypedQuery<Conference> c = em.createQuery(readQuery, Conference.class);
+        
+       try  {
+            c.setParameter("confName", confName);
+            return c.getSingleResult();
+            
+        } catch (Exception ex){
+            System.out.println(ex.getMessage());
+            trans.rollback();
+        } finally {
+            em.close();
+        }
+        return null;
     }
 
     public Long getConfId() {
