@@ -98,9 +98,14 @@ public class Person implements Serializable {
         }     
     }
     
+    public static Person find(String pkey) {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        Person p = em.find(Person.class, pkey);
+        return p;
+    }
+    
     public static Person read(String email){
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
-        EntityTransaction trans = em.getTransaction();
         String readQuery = "Select p From Person p " +
                            " Where p.email = :email";
         TypedQuery<Person> p = em.createQuery(readQuery, Person.class);
@@ -111,7 +116,6 @@ public class Person implements Serializable {
             
         } catch (Exception ex){
             System.out.println(ex.getMessage());
-            trans.rollback();
         } finally {
             em.close();
         }
