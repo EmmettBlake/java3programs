@@ -13,15 +13,17 @@
     </head>
     <body>
         <h1>Catalog Maintenance</h1>
-        <form action="CatMaintServlet" method="post">  
-        <label class="pad_top">Item Id:</label>
-        <input type="text" name="itemId" value="${catalog.itemId}" ><br>
-        <label class="pad_top">Item Name:</label>
-        <input type="text" name="itemName" value="${catalog.itemName}"<br>
-        <label class="pad_top">Price:</label>
-        <input type="text" name="itemPrice" value ="${catalog.price}"><br>
-        <label class="pad_top">Description:</label>
-        <input type="text" name="itemDesc" value ="${catalog.itemDesc}"><br>   
+        <form action="ConferenceServlet" method="post">  
+        <label class="pad_top">Conference Id:</label>
+        <input type="text" name="confId" value="${conference.confId}" ><br>
+        <label class="pad_top">Conference Name:</label>
+        <input type="text" name="confName" value="${conference.confName}"<br>
+        <label class="pad_top">Cost:</label>
+        <input type="text" name="cost" value ="${conference.cost}"><br>
+        <label class="pad_top">Start Date:</label>
+        <input type="date" name="startDate" value="${conference.startDate}">
+        <label class="pad_top">End Date:</label>
+        <input type="date" name="endDate" value="${conference.endDate}"><br><br>
         <input type="radio" name="function" value="R"> Read &nbsp;
         <input type="radio" name="function" value="A"> Add &nbsp;
         <input type="radio" name="function" value="U"> Change &nbsp;

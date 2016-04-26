@@ -105,7 +105,7 @@ public class Person implements Serializable {
                            " Where p.email = :email";
         TypedQuery<Person> p = em.createQuery(readQuery, Person.class);
         
-        try  {
+       try  {
             p.setParameter("email", email);
             return p.getSingleResult();
             
