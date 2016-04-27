@@ -5,6 +5,18 @@
         <servlet-class>com.javaee.conferencewizard.db.PersonServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>RoomServlet</servlet-name>
+        <servlet-class>com.javaee.conferencewizard.db.RoomServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PresentationServlet</servlet-name>
+        <servlet-class>com.javaee.conferencewizard.db.PresentationServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ConfPaperServlet</servlet-name>
+        <servlet-class>com.javaee.conferencewizard.db.ConfPaperServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>ConferenceServlet</servlet-name>
         <servlet-class>com.javaee.conferencewizard.db.ConferenceServlet</servlet-class>
     </servlet>
@@ -24,6 +36,18 @@
         <servlet-name>AttendeeServlet</servlet-name>
         <url-pattern>/AttendeeServlet</url-pattern>
         <url-pattern>/AttendeeServlet/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ConfPaperServlet</servlet-name>
+        <url-pattern>/ConfPaperServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RoomServlet</servlet-name>
+        <url-pattern>/RoomServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PresentationServlet</servlet-name>
+        <url-pattern>/PresentationServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

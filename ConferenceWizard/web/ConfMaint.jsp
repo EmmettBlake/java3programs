@@ -20,7 +20,7 @@
     </head>
     <body>
         <h1>Catalog Maintenance</h1>
-        <form action="ConferenceServlet" method="post">  
+        <form action="ConfPaperServlet" method="post">  
         <label class="pad_top">Conference Id:</label>
         <input type="text" name="confId" value="${conference.confId}" ><br>
         <label class="pad_top">Conference Name:</label>
