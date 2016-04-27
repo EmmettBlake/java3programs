@@ -75,41 +75,62 @@ public class ConferenceServlet extends HttpServlet {
             throws ServletException, IOException {
         
         String function = request.getParameter("function");
+        String strCost;
+        String strStartDate;
+        String strEndDate;
+        String strConfId;
+        
         SimpleDateFormat mdyFormat = new SimpleDateFormat("MM-dd-yyyy");
 
         Conference conference = new Conference();
         
         conference.setConfName(request.getParameter("confName"));
-        conference.setCost(Double.parseDouble(request.getParameter("cost")));
-        try {
-            conference.setStartDate(mdyFormat.parse(request.getParameter("startDate")));
-        }catch (ParseException PE) {
-            System.out.println("Bad Start Date Format " + PE.getMessage());
-            return;
-        }
-                try {
-            conference.setEndDate(mdyFormat.parse(request.getParameter("endDate")));
-        }catch (ParseException PE) {
-            System.out.println("Bad End Date Format " + PE.getMessage());
-            return;
+        strCost = request.getParameter("cost");
+        if ((strCost.matches(".\\d\\.\\d\\d"))) {
+            conference.setCost(Double.parseDouble(strCost));
+        } else {
+            conference.setCost(0.0d);
         }
         
-        
+        strStartDate = request.getParameter("startDate");
+        if (!strStartDate.isEmpty()) {
+            try {
+                conference.setStartDate(mdyFormat.parse(strStartDate));
+            }catch (ParseException PE) {
+                System.out.println("Bad Start Date Format " + PE.getMessage());
+                return;
+            }
+        }
+
+        strEndDate = request.getParameter("endDate");
+        if (!strEndDate.isEmpty()){
+            try {
+                conference.setEndDate(mdyFormat.parse(strEndDate));
+            }catch (ParseException PE) {
+                System.out.println("Bad End Date Format " + PE.getMessage());
+                return;
+            }
+        }
         
         switch(function.toUpperCase()){
             case "A":
                 conference.add();
                 break;
             case "C":
-                conference.setConfId(Long.parseLong(request.getParameter("confId")));
+                strConfId = request.getParameter("confId");
+                if (!strConfId.isEmpty()){
+                    conference.setConfId(Long.parseLong(strConfId));
+                }
                 conference.change();
                 break;
             case "D":
-                conference.setConfId(Long.parseLong(request.getParameter("confId")));
+                strConfId = request.getParameter("confId");
+                if (!strConfId.isEmpty()){
+                    conference.setConfId(Long.parseLong(strConfId));
+                }
                 conference.delete();
                 break;
             case "R":
-                conference.setConfId(Long.parseLong(request.getParameter("confId")));
                 conference = Conference.read(conference.getConfName());
                 break;
             
