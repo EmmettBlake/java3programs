@@ -5,6 +5,13 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<fmt:formatDate value="${conference.startDate}" var="formattedStartDate" 
+                type="date" pattern="MM-dd-yyyy" />
+<fmt:formatDate value="${conference.startDate}" var="formattedEndDate" 
+                type="date" pattern="MM-dd-yyyy" />
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -21,9 +28,9 @@
         <label class="pad_top">Cost:</label>
         <input type="text" name="cost" value ="${conference.cost}"><br>
         <label class="pad_top">Start Date:</label>
-        <input type="date" name="startDate" value="${conference.startDate}">
+        <input type="date" name="startDate" value="${formattedStartDate}">
         <label class="pad_top">End Date:</label>
-        <input type="date" name="endDate" value="${conference.endDate}"><br><br>
+        <input type="date" name="endDate" value="${formattedEndDate}"><br><br>
         <input type="radio" name="function" value="R"> Read &nbsp;
         <input type="radio" name="function" value="A"> Add &nbsp;
         <input type="radio" name="function" value="U"> Change &nbsp;
