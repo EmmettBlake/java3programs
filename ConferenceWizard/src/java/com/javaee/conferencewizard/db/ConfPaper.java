@@ -7,18 +7,26 @@ package com.javaee.conferencewizard.db;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.annotation.Generated;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.TypedQuery;
 
 /**
  *
- * @author Emmett
+ * @author CELEDONIO
  */
 @Entity
 public class ConfPaper implements Serializable{
+
+    static void setEmail(String parameter) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long confPaperId;
@@ -41,7 +49,74 @@ public class ConfPaper implements Serializable{
     }
 
     public ConfPaper() {
+    }   
+    public ConfPaper add(){
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        try  {
+            trans.begin();
+            em.persist(this);
+            trans.commit();
+            return this;
+        } catch (Exception ex){
+            System.out.println(ex.getMessage());
+            trans.rollback();
+        } finally {
+            em.close();
+        }
+        return null;
     }
+    
+    public void change(){
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        try  {
+            trans.begin();
+            em.merge(this);
+            trans.commit();
+        } catch (Exception ex){
+            System.out.println(ex.getMessage());
+            trans.rollback();
+        } finally {
+            em.close();
+        }
+    }
+    
+    public void delete(){
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        try  {
+            trans.begin();
+            em.remove(this);
+            trans.commit();
+        } catch (Exception ex){
+            System.out.println(ex.getMessage());
+            trans.rollback();
+        } finally {
+            em.close();
+        }     
+    }
+    
+    public static ConfPaper read(String email){
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        String readQuery = "Select c From ConfPaper c" +
+                "Where c.email = :email";
+        TypedQuery<ConfPaper> c = em.createQuery(readQuery, ConfPaper.class);
+        
+        try  {
+            c.setParameter("email", email);
+            return c.getSingleResult();
+            
+        } catch (Exception ex){
+            System.out.println(ex.getMessage());
+            trans.rollback();
+        } finally {
+            em.close();
+        }
+        return null;
+    }
+    
 
     public Long getConfPaperId() {
         return confPaperId;
@@ -100,3 +175,6 @@ public class ConfPaper implements Serializable{
     }
     
 }
+    
+    
+
