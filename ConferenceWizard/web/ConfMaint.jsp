@@ -5,13 +5,6 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<fmt:formatDate value="${conference.startDate}" var="formattedStartDate" 
-                type="date" pattern="MM-dd-yyyy" />
-<fmt:formatDate value="${conference.startDate}" var="formattedEndDate" 
-                type="date" pattern="MM-dd-yyyy" />
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -21,16 +14,14 @@
     <body>
         <h1>Catalog Maintenance</h1>
         <form action="ConfPaperServlet" method="post">  
-        <label class="pad_top">Conference Id:</label>
-        <input type="text" name="confId" value="${conference.confId}" ><br>
-        <label class="pad_top">Conference Name:</label>
-        <input type="text" name="confName" value="${conference.confName}"<br>
-        <label class="pad_top">Cost:</label>
-        <input type="text" name="cost" value ="${conference.cost}"><br>
-        <label class="pad_top">Start Date:</label>
-        <input type="date" name="startDate" value="${formattedStartDate}">
-        <label class="pad_top">End Date:</label>
-        <input type="date" name="endDate" value="${formattedEndDate}"><br><br>
+        <label class="pad_top">Item Id:</label>
+        <input type="text" name="itemId" value="${catalog.itemId}" ><br>
+        <label class="pad_top">Item Name:</label>
+        <input type="text" name="itemName" value="${catalog.itemName}"<br>
+        <label class="pad_top">Price:</label>
+        <input type="text" name="itemPrice" value ="${catalog.price}"><br>
+        <label class="pad_top">Description:</label>
+        <input type="text" name="itemDesc" value ="${catalog.itemDesc}"><br>   
         <input type="radio" name="function" value="R"> Read &nbsp;
         <input type="radio" name="function" value="A"> Add &nbsp;
         <input type="radio" name="function" value="U"> Change &nbsp;
