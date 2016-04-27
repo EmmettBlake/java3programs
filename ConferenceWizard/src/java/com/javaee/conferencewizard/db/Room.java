@@ -6,14 +6,16 @@
 package com.javaee.conferencewizard.db;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -33,7 +35,7 @@ public class Room implements Serializable {
 
     public Room(Long roomId, Long confId, String roomName, int capacity, List<Presentation> presentations) {
         this.roomId = roomId;
-        this.conference = conference;
+      //  this.conference = conference;
         this.roomName = roomName;
         this.capacity = capacity;
         this.presentations = presentations;
@@ -41,7 +43,75 @@ public class Room implements Serializable {
 
     public Room() {
     }
-
+    public Room add(){
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        trans.begin();
+        try{
+            em.persist(this);
+            trans.commit();
+            return this;
+            
+        }catch(Exception e){
+           System.out.println(e);
+            trans.rollback();
+            
+        }finally{
+            em.close();
+        }
+         
+    return null;
+    }
+    public void change(){
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        trans.begin();
+        try{
+            
+            em.merge(this);
+            trans.commit();
+            
+        }catch (Exception e){
+            System.out.println(e);
+            trans.rollback();
+            
+        }finally{
+            em.close();
+        }
+    }
+     public void delete(){
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        trans.begin();
+        try{
+            Room r = em.find(this.getClass(), this.getRoomId());
+            em.remove(r);
+            trans.commit();
+            
+        }catch (Exception e){
+            System.out.println(e);
+            trans.rollback();
+            
+        }finally{
+            em.close();
+        }
+    }
+    public static Room read(Long roomId){
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        
+        trans.begin();
+         try  {
+            Room room = em.find(Room.class, roomId);
+            return room;
+        } catch (Exception ex){
+            System.out.println(ex.getMessage());
+            trans.rollback();
+        } finally {
+            em.close();
+        }
+        return null;
+    }
     public Long getRoomId() {
         return roomId;
     }
@@ -81,6 +151,7 @@ public class Room implements Serializable {
     public void setPresentations(List<Presentation> presentations) {
         this.presentations = presentations;
     }
+    
     
     
     

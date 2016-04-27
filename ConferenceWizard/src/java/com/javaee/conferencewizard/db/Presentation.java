@@ -9,6 +9,8 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,6 +20,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import static javax.persistence.TemporalType.TIMESTAMP;
+import javax.persistence.TypedQuery;
+import static org.eclipse.persistence.sessions.SessionProfiler.Transaction;
 
 /**
  *
@@ -30,7 +34,7 @@ public class Presentation implements Serializable {
    private Long presentationId;
    @Temporal(TemporalType.TIMESTAMP)
    private Date startTime;
-   @Temporal(TemporalType.TIMESTAMP)
+  @Temporal(TemporalType.TIMESTAMP)
    private Date endTime;
    @OneToOne
    private ConfPaper paper;
@@ -50,6 +54,77 @@ public class Presentation implements Serializable {
     }
 
     public Presentation() {
+    }
+    public Presentation add(){
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        trans.begin();
+        try{
+            em.persist(this);
+            trans.commit();
+            return this;
+            
+        }catch(Exception e){
+           System.out.println(e);
+            trans.rollback();
+            
+        }finally{
+            em.close();
+        }
+         
+    return null;
+    }
+    public void change(){
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        trans.begin();
+        try{
+            em.merge(this);
+            trans.commit();
+            
+        }catch (Exception e){
+            System.out.println(e);
+            trans.rollback();
+            
+        }finally{
+            em.close();
+        }
+    }
+     public void delete(){
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        trans.begin();
+        try{
+            Presentation p = em.find(this.getClass(), this.getPresentationId());
+            em.remove(p);
+            trans.commit();
+            
+        }catch (Exception e){
+            System.out.println(e);
+            trans.rollback();
+            
+        }finally{
+            em.close();
+        }
+    }
+    public static Presentation read(String title){
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        String readQuery = "SELECT p FROM Presentation p "+
+                "WHERE p.title = :title";
+        TypedQuery<Presentation> q = em.createQuery(readQuery, Presentation.class);
+        trans.begin();
+         try  {
+            q.setParameter("title", title);
+            Presentation result = q.getSingleResult();
+            return result;
+        } catch (Exception ex){
+            System.out.println(ex.getMessage());
+            trans.rollback();
+        } finally {
+            em.close();
+        }
+        return null;
     }
 
     public Long getPresentationId() {

@@ -13,15 +13,15 @@
     </head>
     <body>
         <h1>Presentation Maintenance</h1>
-        <form action="PresentationMaintServlet" method="post">  
+        <form action="PresentationServlet" method="post">  
         <label class="pad_top">Presentation Id:</label>
         <input type="text" name="presentationId" value="${presentation.presentationId}" ><br>
         <label class="pad_top">Start Time:</label>
-        <input type="text" name="startTime" value="${presentation.startTime}"<br>
+        <input type="text" name="startTime" value="${prettyStart}"<br>
         <label class="pad_top">End Time:</label>
-        <input type="text" name="endTime" value ="${presentation.endTime}"><br>
+        <input type="text" name="endTime" value ="${prettyEnd}"><br>
         <label class="pad_top">Title:</label>
-        <input type="text" name="itemDesc" value ="${presentation.title}"><br>   
+        <input type="text" name="title" value ="${presentation.title}"><br>   
         <input type="radio" name="function" value="R"> Read &nbsp;
         <input type="radio" name="function" value="A"> Add &nbsp;
         <input type="radio" name="function" value="U"> Change &nbsp;

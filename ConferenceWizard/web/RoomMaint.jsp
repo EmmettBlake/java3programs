@@ -13,13 +13,13 @@
     </head>
     <body>
         <h1>Room Maintenance</h1>
-        <form action="RoomMaintServlet" method="post">  
+        <form action="RoomServlet" method="post">  
         <label class="pad_top">Room Id:</label>
-        <input type="text" name="roomId" value="${room.RoomId}" ><br>
+        <input type="text" name="roomId" value="${room.roomId}" ><br>
         <label class="pad_top">Room Name:</label>
         <input type="text" name="roomName" value="${room.roomName}"<br>
         <label class="pad_top">Capacity:</label>
-        <input type="text" name="itemPrice" value ="${room.capacity}"><br> 
+        <input type="text" name="capacity" value ="${room.capacity}"><br> 
         <input type="radio" name="function" value="R"> Read &nbsp;
         <input type="radio" name="function" value="A"> Add &nbsp;
         <input type="radio" name="function" value="U"> Change &nbsp;
