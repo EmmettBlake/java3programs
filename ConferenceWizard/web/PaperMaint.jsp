@@ -12,8 +12,8 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Catalog Maintenance</h1>
-        <form action="CatMaintServlet" method="post">  
+        <h1>Paper Maintenance</h1>
+        <form action="ConfPaperServlet" method="post">  
         <label class="pad_top">Item Id:</label>
         <input type="text" name="itemId" value="${catalog.itemId}" ><br>
         <label class="pad_top">Item Name:</label>
