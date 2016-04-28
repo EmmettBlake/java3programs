@@ -14,7 +14,7 @@
         <title>Attendees List!</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Attendee's</h1>
         
         <table>
         <c:forEach items="${attendees}" var="attendee">
