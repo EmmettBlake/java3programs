@@ -26,4 +26,10 @@ public class DBUtil {
         List<Person> attendees = em.createQuery("SELECT e FROM Person e").getResultList();
         return attendees;
     }
+    
+    public static List<Conference> getConferences() {
+                EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        List<Conference> conferences = em.createQuery("SELECT c FROM Conference c").getResultList();
+        return conferences;
+    }
 }
