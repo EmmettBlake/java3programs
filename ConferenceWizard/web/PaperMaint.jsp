@@ -15,11 +15,15 @@
         <h1>Paper Maintenance</h1>
         <form action="ConfPaperServlet" method="post">  
         <label class="pad_top">Item Id:</label>
-        <input type="text" name="itemId" value="${catalog.itemId}" ><br>
-        <label class="pad_top">Item Name:</label>
-        <input type="text" name="itemName" value="${catalog.itemName}"<br>
-        <label class="pad_top">Price:</label>
-        <input type="text" name="itemPrice" value ="${catalog.price}"><br>
+        <input type="text" name="confPaperId" value="${confPaper.confPaperId}" ><br>
+        <label class="pad_top">Keywords:</label>
+        <input type="text" name="keywords" value="${confPaper.keywords}"<br>
+        <label class="pad_top">Subject</label>
+        <input type="text" name="subject" value ="${confPaper.subject}"><br>
+        <label class="pad_top">Title</label>
+        <input type="text" name="title" value ="${confPaper.title}"><br>
+        <label class="pad_top">Paper</label>
+        <input type="text" name="paper" value ="${confPaper.paper}"><br>
         <label class="pad_top">Description:</label>
         <input type="text" name="itemDesc" value ="${catalog.itemDesc}"><br>   
         <input type="radio" name="function" value="R"> Read &nbsp;
