@@ -16,14 +16,18 @@
         
         <br>
         <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
+        <table>
+            <c:forEach items="${conferences}" var="conference">
+                <tr>
+                    <td><c:out value="${conference.confId}"/></td>
+                    <td><c:out value="${conference.confName}"/></td>
+                    <td><c:out value="${conference.startDate}"/></td>
+                    <td><c:out value="${conference.endDate}"/></td>
+                    <td><c:out value="${conference.cost}"/></td>
+                <td><a href="/ConferenceWizard/ConfDetailServlet/${conference.confId}">View Details</a></td>
+            </tr>
+        </c:forEach>
+        </table>
         <br>
         <h1> <b>Maintenance</b></h1>
         <a href="PersonMaint.jsp">Person</a>&nbsp; 
