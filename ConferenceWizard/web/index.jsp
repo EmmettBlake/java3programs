@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -30,11 +31,11 @@
         </table>
         <br>
         <h1> <b>Maintenance</b></h1>
-        <a href="PersonMaint.jsp">Person</a>&nbsp; 
-        <a href="ConfMaint.jsp">Conference</a>&nbsp;
-        <a href="PaperMaint.jsp">Paper</a>&nbsp;
-        <a href="PresentationMaint.jsp">Presentation</a>&nbsp;
-        <a href="RoomMaint.jsp">Room</a>
+        <a href="ConferenceWizard/PersonServlet">Person</a>&nbsp; 
+        <a href="ConferenceWizard/ConferenceServlet">Conference</a>&nbsp;
+        <a href="ConferenceWizard/ConfPaperServlet">Paper</a>&nbsp;
+        <a href="ConferenceWizard/PresentationServlet">Presentation</a>&nbsp;
+        <a href="ConferenceWizard/RoomSevlet">Room</a>
         
         
     </body>
