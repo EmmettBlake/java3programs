@@ -55,7 +55,7 @@ public class ConfPaperServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/PaperMaint.jsp").forward(request, response);
+        
     }
 
     /**
@@ -69,17 +69,40 @@ public class ConfPaperServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String function = request.getParameter("function");
+        String strPaperId;
         ConfPaper confPaper= new ConfPaper();
         confPaper.setDescription(request.getParameter("description"));
         confPaper.setKeywords(request.getParameter("keywords"));
         confPaper.setTitle(request.getParameter("title"));
         confPaper.setSubject(request.getParameter("subject"));
-        //confPaper.setConfPaperId(Long.parseLong(request.getParameter("paperId")));
+        confPaper.setPaper(request.getParameter("paper"));
+         switch (function) {
+            case "A":
+                confPaper.add();
+                break;
+            case "U":
+                strPaperId = request.getParameter("confPaperId");
+                confPaper.setConfPaperId(Long.parseLong(strPaperId));
+                confPaper.change();
+                break;
+            case "D":
+                strPaperId = request.getParameter("confPaperId");
+               confPaper.setConfPaperId(Long.parseLong(strPaperId));
+               confPaper.delete();
+                break;
+            case "R":
+                String strId = request.getParameter("confPaperId");
+                
+                confPaper.setConfPaperId(Long.parseLong(strId));
+                confPaper = ConfPaper.read(confPaper.getConfPaperId());
+                
+                break;
+        }
+        request.setAttribute("confPaper", confPaper);
+        getServletContext().getRequestDispatcher("/PaperMaint.jsp").forward(request, response);
         
-                //setLastName(request.getParameter("lastNamec
-        //ConfPaper.setPhone(request.getParameter("phone"));
-        //ConfPaper.setTitle(request.getParameter("title"));
-        //ConfPaper.add();
+         
         
         processRequest(request, response);
     }
