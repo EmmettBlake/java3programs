@@ -36,7 +36,7 @@ public class ConfPaper implements Serializable{
     private String subject;
     private String description;
     private String title;
-    private String paper;
+    private String paper;//content?
 
     public ConfPaper(Long confPaperId, List<Person> authors, String keywords, String subject, String description, String title, String paper) {
         this.confPaperId = confPaperId;
@@ -53,8 +53,10 @@ public class ConfPaper implements Serializable{
     public ConfPaper add(){
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
+        trans.begin();
+        
         try  {
-            trans.begin();
+            
             em.persist(this);
             trans.commit();
             return this;
@@ -85,9 +87,10 @@ public class ConfPaper implements Serializable{
     public void delete(){
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
+        trans.begin();
         try  {
-            trans.begin();
-            em.remove(this);
+           ConfPaper  p = em.find(this.getClass(), this.getConfPaperId());
+            em.remove(p);
             trans.commit();
         } catch (Exception ex){
             System.out.println(ex.getMessage());
@@ -97,17 +100,14 @@ public class ConfPaper implements Serializable{
         }     
     }
     
-    public static ConfPaper read(String email){
+    public static ConfPaper read(Long paperId){
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
-        String readQuery = "Select c From ConfPaper c" +
-                "Where c.email = :email";
-        TypedQuery<ConfPaper> c = em.createQuery(readQuery, ConfPaper.class);
+        trans.begin();
         
-        try  {
-            c.setParameter("email", email);
-            return c.getSingleResult();
-            
+       try  {
+            ConfPaper paper = em.find(ConfPaper.class, paperId);
+            return paper; 
         } catch (Exception ex){
             System.out.println(ex.getMessage());
             trans.rollback();

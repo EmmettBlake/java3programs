@@ -9,7 +9,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <fmt:formatDate value="${conference.startDate}" var="formattedStartDate" 
                 type="date" pattern="MM-dd-yyyy" />
-<fmt:formatDate value="${conference.startDate}" var="formattedEndDate" 
+<fmt:formatDate value="${conference.endDate}" var="formattedEndDate" 
                 type="date" pattern="MM-dd-yyyy" />
 
 <!DOCTYPE html>
@@ -20,7 +20,7 @@
     </head>
     <body>
         <h1>Catalog Maintenance</h1>
-        <form action="ConfPaperServlet" method="post">  
+        <form action="ConferenceServlet" method="post">  
         <label class="pad_top">Conference Id:</label>
         <input type="text" name="confId" value="${conference.confId}" ><br><br>
         <label class="pad_top">Conference Name:</label>
