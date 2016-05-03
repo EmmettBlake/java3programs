@@ -17,7 +17,7 @@
         <label class="pad_top">Presentation Id:</label>
         <input type="text" name="presentationId" value="${presentation.presentationId}" ><br>
         <label class="pad_top">Start Time:</label>
-        <input type="text" name="startTime" value="${prettyStart}"<br>
+        <input type="text" name="startTime" value="${prettyStart}"><br>
         <label class="pad_top">End Time:</label>
         <input type="text" name="endTime" value ="${prettyEnd}"><br>
         <label class="pad_top">Title:</label>

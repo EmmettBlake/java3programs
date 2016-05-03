@@ -17,11 +17,11 @@
         <label class="pad_top">Person Id:</label>
         <input type="text" name="personId" value="${person.personId}" ><br>
         <label class="pad_top">First Name:</label>
-        <input type="text" name="firstName" value="${person.firstName}"
+        <input type="text" name="firstName" value="${person.firstName}">
         <label class="pad_top">Last Name:</label><br>
-        <input type="text" name="lastName" value="${person.lastName}"<br>
+        <input type="text" name="lastName" value="${person.lastName}"><br>
         <label class="pad_top">Title:</label>
-        <input type="text" name="title" value="${person.title}"<br>
+        <input type="text" name="title" value="${person.title}"><br>
         <label class="pad_top">Phone:</label>
         <input type="text" name="phone" value ="${person.phone}"><br>
         <label class="pad_top">Email:</label>
