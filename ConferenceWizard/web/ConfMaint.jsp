@@ -9,7 +9,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <fmt:formatDate value="${conference.startDate}" var="formattedStartDate" 
                 type="date" pattern="MM-dd-yyyy" />
-<fmt:formatDate value="${conference.startDate}" var="formattedEndDate" 
+<fmt:formatDate value="${conference.endDate}" var="formattedEndDate" 
                 type="date" pattern="MM-dd-yyyy" />
 
 <!DOCTYPE html>
