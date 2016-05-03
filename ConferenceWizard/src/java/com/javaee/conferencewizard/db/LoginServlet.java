@@ -75,7 +75,7 @@ public class LoginServlet extends HttpServlet {
         String message;
         String email = request.getParameter("email");
         Person loginPerson = Person.read(email);
-        if (loginPerson != null && password.equals(loginPerson.getPassword())){
+        if (loginPerson != null && loginPerson.isPasswordMatching(password)){
               getServletContext().getRequestDispatcher("/ConferenceWizard.jsp").forward(request, response);
         } else {
             message = "Bad Email/Password combination";

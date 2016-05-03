@@ -6,6 +6,7 @@
 package com.javaee.conferencewizard.db;
 
 import java.io.Serializable;
+import java.security.MessageDigest;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
@@ -200,8 +201,37 @@ public class Person implements Serializable {
     public String getPassword() {
         return password;
     }
+    
+    static private String encryptPassword(String password) {
+                try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            md.update(password.getBytes());
+            byte[] bytes = md.digest();
+            StringBuilder sb = new StringBuilder(bytes.length * 2);
+            for (byte b : bytes) {
+                int v = b & 0xff;
+                if (v < 16) {
+                    sb.append('0');
+                }
+                sb.append(Integer.toHexString(v));
+            }
+            return sb.toString();
+        }
+        catch (Exception e) {
+            System.out.println("Encryption method doens't exist...");
+        }
+        return null;
+    }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = Person.encryptPassword(password);
+    }
+    
+    public boolean isPasswordMatching(String password) {
+        String encryptedPassword = Person.encryptPassword(password);
+        if (encryptedPassword != null) {
+            return encryptedPassword.equals(this.getPassword());
+        }
+        return false;
     }
 }

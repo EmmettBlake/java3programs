@@ -13,7 +13,7 @@
         <title>Login</title>
     </head>
     <h1>Login Conference Wizard</h1>
-        <form action="LoginServlet" method="post"> 
+        <form action="/ConferenceWizard/LoginServlet" method="post"> 
             <label class="pad_top">Email:</label>
             <input type="text" name="email" value="${email}" ><br>
             <label class="pad_top">Password:</label>

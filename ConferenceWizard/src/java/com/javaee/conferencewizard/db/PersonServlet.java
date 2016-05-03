@@ -7,6 +7,7 @@ package com.javaee.conferencewizard.db;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.security.MessageDigest;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -80,7 +81,7 @@ public class PersonServlet extends HttpServlet {
         person.setLastName(request.getParameter("lastName"));
         person.setPhone(request.getParameter("phone"));
         person.setTitle(request.getParameter("title"));
-        
+        person.setPassword(request.getParameter("password"));
         
         switch(function.toUpperCase()){
             case "A":

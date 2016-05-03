@@ -26,6 +26,8 @@
         <input type="text" name="phone" value ="${person.phone}"><br>
         <label class="pad_top">Email:</label>
         <input type="text" name="email" value ="${person.email}"><br>   
+        <label class="pad_top">Password:</label>
+        <input type="password" name="password" value ="${person.password}"><br>   
         <input type="radio" name="function" value="R"> Read &nbsp;
         <input type="radio" name="function" value="A"> Add &nbsp;
         <input type="radio" name="function" value="C"> Change &nbsp;
