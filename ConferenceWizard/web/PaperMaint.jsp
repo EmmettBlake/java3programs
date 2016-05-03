@@ -17,7 +17,7 @@
         <label class="pad_top">Item Id:</label>
         <input type="text" name="confPaperId" value="${confPaper.confPaperId}" ><br>
         <label class="pad_top">Keywords:</label>
-        <input type="text" name="keywords" value="${confPaper.keywords}"<br>
+        <input type="text" name="keywords" value="${confPaper.keywords}"><br>
         <label class="pad_top">Subject</label>
         <input type="text" name="subject" value ="${confPaper.subject}"><br>
         <label class="pad_top">Title</label>

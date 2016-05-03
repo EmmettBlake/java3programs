@@ -22,20 +22,21 @@
         <h1>Catalog Maintenance</h1>
         <form action="ConfPaperServlet" method="post">  
         <label class="pad_top">Conference Id:</label>
-        <input type="text" name="confId" value="${conference.confId}" ><br>
+        <input type="text" name="confId" value="${conference.confId}" ><br><br>
         <label class="pad_top">Conference Name:</label>
-        <input type="text" name="confName" value="${conference.confName}"<br>
+        <input type="text" name="confName" value="${conference.confName}"><br><br>
         <label class="pad_top">Cost:</label>
-        <input type="text" name="cost" value ="${conference.cost}"><br>
+        <input type="text" name="cost" value ="${conference.cost}"><br><br>
         <label class="pad_top">Start Date:</label>
-        <input type="date" name="startDate" value="${formattedStartDate}">
+        <input id="startdate" name="stardate" type="date"><br><br>
         <label class="pad_top">End Date:</label>
-        <input type="date" name="endDate" value="${formattedEndDate}"><br><br>
+        <input id="endate" name="endDate" type="date" ><br><br>
         <input type="radio" name="function" value="R"> Read &nbsp;
-        <input type="radio" name="function" value="A"> Add &nbsp;
+        <input type="radio" name="function" value="A"> Add &nbsp 
         <input type="radio" name="function" value="U"> Change &nbsp;
-        <input type="radio" name="function" value="D"> Delete &nbsp; <br>
-
+        <input type="radio" name="function" value="D"> Delete &nbsp; <br><br>
+        
+        div
         <label>&nbsp;</label>
         <input type="submit" value="Submit" class="margin_left">
     </form>

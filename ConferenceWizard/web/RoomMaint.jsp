@@ -17,7 +17,7 @@
         <label class="pad_top">Room Id:</label>
         <input type="text" name="roomId" value="${room.roomId}" ><br>
         <label class="pad_top">Room Name:</label>
-        <input type="text" name="roomName" value="${room.roomName}"<br>
+        <input type="text" name="roomName" value="${room.roomName}"><br>
         <label class="pad_top">Capacity:</label>
         <input type="text" name="capacity" value ="${room.capacity}"><br> 
         <input type="radio" name="function" value="R"> Read &nbsp;
