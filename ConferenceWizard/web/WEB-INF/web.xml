@@ -28,6 +28,10 @@
         <servlet-name>indexServlet</servlet-name>
         <servlet-class>com.javaee.conferencewizard.db.indexServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>com.javaee.conferencewizard.db.LoginServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PersonServlet</servlet-name>
         <url-pattern>/PersonServlet</url-pattern>
@@ -56,6 +60,10 @@
     <servlet-mapping>
         <servlet-name>indexServlet</servlet-name>
         <url-pattern>/</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/LoginServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

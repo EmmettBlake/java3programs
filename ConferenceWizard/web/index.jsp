@@ -1,6 +1,6 @@
 <%-- 
     Document   : index
-    Created on : Apr 13, 2016, 6:51:37 PM
+    Created on : May 2, 2016, 6:10:08 PM
     Author     : Emmett
 --%>
 
@@ -10,34 +10,20 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-       
-        <title>JSP Page</title>
+        <title>Login</title>
     </head>
+    <h1>Login Conference Wizard</h1>
+        <form action="LoginServlet" method="post"> 
+            <label class="pad_top">Email:</label>
+            <input type="text" name="email" value="${email}" ><br>
+            <label class="pad_top">Password:</label>
+            <input type="password" name="password" value="${password}" ><br>
+            <input type="submit" value="Submit" class="margin_left"><br>
+            <font color="red"> ${message} </font>
+            
+            
+        </form>
     <body>
-        <h1>Conference Wizard</h1>
-        
-        <br>
-        <br>
-        <table>
-            <c:forEach items="${conferences}" var="conference">
-                <tr>
-                    <td><c:out value="${conference.confId}"/></td>
-                    <td><c:out value="${conference.confName}"/></td>
-                    <td><c:out value="${conference.startDate}"/></td>
-                    <td><c:out value="${conference.endDate}"/></td>
-                    <td><c:out value="${conference.cost}"/></td>
-                <td><a href="/ConferenceWizard/ConfDetailServlet/${conference.confId}">View Details</a></td>
-            </tr>
-        </c:forEach>
-        </table>
-        <br>
-        <h1> <b>Maintenance</b></h1>
-        <a href="ConferenceWizard/PersonServlet">Person</a>&nbsp; 
-        <a href="ConferenceWizard/ConferenceServlet">Conference</a>&nbsp;
-        <a href="ConferenceWizard/ConfPaperServlet">Paper</a>&nbsp;
-        <a href="ConferenceWizard/PresentationServlet">Presentation</a>&nbsp;
-        <a href="ConferenceWizard/RoomSevlet">Room</a>
-        
-        
+
     </body>
 </html>

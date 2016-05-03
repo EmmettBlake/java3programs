@@ -22,6 +22,7 @@ import javax.persistence.TypedQuery;
  */
 @Entity
 public class Person implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String personId;
@@ -30,9 +31,11 @@ public class Person implements Serializable {
     private String phone;
     private String email;
     private String title;
-    @ManyToMany(mappedBy="attendees")
+    private String password;
+
+    @ManyToMany(mappedBy = "attendees")
     private List<Conference> conferences;
-    @ManyToMany(mappedBy="authors")
+    @ManyToMany(mappedBy = "authors")
     private List<ConfPaper> papers;
     @ManyToMany
     private List<Presentation> presentations;
@@ -50,15 +53,15 @@ public class Person implements Serializable {
     public Person() {
     }
 
-    public Person add(){
+    public Person add() {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
-        try  {
+        try {
             trans.begin();
             em.persist(this);
             trans.commit();
             return this;
-        } catch (Exception ex){
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
             trans.rollback();
         } finally {
@@ -66,62 +69,62 @@ public class Person implements Serializable {
         }
         return null;
     }
-    
-    public void change(){
+
+    public void change() {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
-        try  {
+        try {
             trans.begin();
             em.merge(this);
             trans.commit();
-        } catch (Exception ex){
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
             trans.rollback();
         } finally {
             em.close();
         }
     }
-    
-    public void delete(){
+
+    public void delete() {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
-        try  {
+        try {
             trans.begin();
             Person p = em.find(this.getClass(), this.getPersonId());
             em.remove(p);
             trans.commit();
-        } catch (Exception ex){
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
             trans.rollback();
         } finally {
             em.close();
-        }     
+        }
     }
-    
+
     public static Person find(String pkey) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         Person p = em.find(Person.class, pkey);
         return p;
     }
-    
-    public static Person read(String email){
+
+    public static Person read(String email) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
-        String readQuery = "Select p From Person p " +
-                           " Where p.email = :email";
+        String readQuery = "Select p From Person p "
+                + " Where p.email = :email";
         TypedQuery<Person> p = em.createQuery(readQuery, Person.class);
-        
-       try  {
+
+        try {
             p.setParameter("email", email);
             return p.getSingleResult();
-            
-        } catch (Exception ex){
+
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
         } finally {
             em.close();
         }
         return null;
     }
-    
+
     public String getPersonId() {
         return personId;
     }
@@ -193,5 +196,12 @@ public class Person implements Serializable {
     public void setPresentations(List<Presentation> presentations) {
         this.presentations = presentations;
     }
-    
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }
